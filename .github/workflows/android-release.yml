@@ -40,7 +40,7 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload APK artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v34
         with:
           name: syncplay-release-apk
           path: androidApp/build/outputs/apk/release/*.apk
