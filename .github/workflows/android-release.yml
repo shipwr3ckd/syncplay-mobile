@@ -43,4 +43,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: syncplay-release-apk
-          path: androidApp/build/outputs/apk/release/*.apk
+          path: androidApp/build/outputs/apk/withLibs/release/*.apk
