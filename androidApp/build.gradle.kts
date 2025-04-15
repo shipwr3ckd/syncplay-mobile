@@ -23,14 +23,13 @@ android {
     ndkVersion = "26.3.11579264"
 
     signingConfigs {
-        create("github") {
-            storeFile = file("${rootDir}/keystore/keystore.jks")
-            keyAlias = "keystore"
-            keyPassword = "az90az09"
-            storePassword = "az90az09"
-        }
+    create("release") {
+        storeFile = file("${rootDir}/keystore.jks")
+        storePassword = System.getenv("KEYSTORE_PASSWORD")
+        keyAlias = System.getenv("KEY_ALIAS")
+        keyPassword = System.getenv("KEY_PASSWORD")
     }
-
+}
     defaultConfig {
         applicationId = "com.reddnek.syncplay"
         minSdk = 21
@@ -53,14 +52,12 @@ android {
 
 
     buildTypes {
-        release {
-            isMinifyEnabled = exoOnly
-        }
-        debug {
-            isDebuggable = true
-            applicationIdSuffix = ".new"
-        }
+    release {
+        signingConfig = signingConfigs.getByName("release")
+        isMinifyEnabled = false
+        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
+}
 
     buildFeatures {
         buildConfig = true
